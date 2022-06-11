@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tool insurance status{% endblock %}
+
+{% block body %}
+    <h1>Tool insurance status</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Status</th>
+                <td>{{ status ? 'valid' : 'invalid' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_tool_index') }}">back to list</a>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Insurance index{% endblock %}
+
+{% block body %}
+    <h1>Insurance index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>EndDate</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for insurance in insurances %}
+            <tr>
+                <td>{{ insurance.id }}</td>
+                <td>{{ insurance.endDate ? insurance.endDate|date('Y-m-d') : '' }}</td>
+                    {# @fiXME should be replaced with translate #}
+                <td>{{ insurance.type.value }}</td>
+                <td>{{ insurance.name }}</td>
+                <td>{{ insurance.description }}</td>
+                <td>
+                    <a href="{{ path('app_insurance_show', {'id': insurance.id}) }}">show</a>
+                    <a href="{{ path('app_insurance_edit', {'id': insurance.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_insurance_new') }}">Create new</a>
+{% endblock %}
